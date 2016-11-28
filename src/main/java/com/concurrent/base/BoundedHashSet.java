@@ -18,6 +18,7 @@ public class BoundedHashSet<T> {
     private final Semaphore sem;
 
     public BoundedHashSet(int bound) {
+    	// 把普通set转换成同步的set<br>
         this.set = Collections.synchronizedSet(new HashSet<T>());
         this.sem = new Semaphore(bound);
     }

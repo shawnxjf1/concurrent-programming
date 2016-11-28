@@ -1,7 +1,7 @@
 package test;
 
 /**
- * 多线程一定快吗
+ * 多线程一定快吗，该测试有用例说明如果join 之后多线程不一定快。
  * <p/>
  * User : krisibm@163.com
  * Date: 2015/10/10
@@ -11,6 +11,11 @@ public class ConcurrencyTest {
 
     private static final long count = 100001;
 
+    /**
+     * 2016年11月26日 test by xujianfeng
+     * @param args
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
         concurrency();
         serial();
@@ -40,6 +45,9 @@ public class ConcurrencyTest {
         System.out.println("concurrency :" + time + "ms,b=" + b);
     }
 
+    /**
+     * 单线程执行
+     */
     private static void serial() {
 
         long start = System.currentTimeMillis();

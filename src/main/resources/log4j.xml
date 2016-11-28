@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+<!--   2016-11-20：什么时候使用 log4j.xml 什么时候使用log4j.properties -->
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %t %c %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 写到远端日志 -->
+	<!--  
+	<appender name="DEFAULT-APPENDER-REMOTE" class="org.apache.log4j.net.SyslogAppender">
+		<param name="SyslogHost" value="${logServer}"/> 
+    	<param name="Facility" value="LOCAL1"/>
+   		<param name="FacilityPrinting" value="true"/>
+    	<layout class="org.apache.log4j.PatternLayout">
+           <param name="ConversionPattern" value="%d %-5p %t %c %m%n" />
+    	</layout> 
+	</appender>
+	
+	<appender name="FRAMEWORK-APPENDER-REMOTE" class="org.apache.log4j.net.SyslogAppender">
+		<param name="SyslogHost" value="${logServer}"/> 
+    	<param name="Facility" value="LOCAL3"/>
+   		<param name="FacilityPrinting" value="true"/>
+    	<layout class="org.apache.log4j.PatternLayout">
+           <param name="ConversionPattern" value="%d %-5p %t %c %m%n" />
+    	</layout> 
+	</appender>
+
+	<appender name="ACCESS-APPENDER-REMOTE" class="org.apache.log4j.net.SyslogAppender">
+		<param name="SyslogHost" value="${logServer}"/> 
+    	<param name="Facility" value="LOCAL2"/>
+   		<param name="FacilityPrinting" value="true"/>
+    	<layout class="org.apache.log4j.PatternLayout">
+           <param name="ConversionPattern" value="%d %-5p %t %c %m%n" />
+    	</layout> 
+	</appender>
+	-->
+
+	<!-- 写到本地日志 -->
+	<!--
+	<appender name="DEFAULT-APPENDER-LOCAL" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${logging.root}/risk.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %t %c %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="FRAMEWORK-APPENDER-LOCAL" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${logging.root}/risk-framework.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %t %c %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ACCESS-APPENDER-LOCAL" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${logging.root}/risk-access.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c - %-5p - %m%n" />
+		</layout>
+	</appender>
+	
+	-->
+
+	<!-- ============== LOGGERS DEFINATION ============== -->
+
+	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
+
+	<!-- 根logger的设置 -->
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+	</log4j:configuration>  

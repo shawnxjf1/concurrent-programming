@@ -14,6 +14,10 @@ import java.util.concurrent.CountDownLatch;
  * Date: 2016/10/25
  */
 public class NativeOutOfMemoryErrorTest {
+	/**
+	 * 2016年11月26日 测试通过<br>
+	 * @param args
+	 */
     public static void main(String[] args) {
         for (int i = 0; ; i++) {
             System.out.println("i = " + i);

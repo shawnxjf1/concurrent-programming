@@ -29,8 +29,10 @@ public class MemoryLeakTest {
         for (int i = 0; i < 1000000; i++) {
             Object object = new Object();
             vector.add(object);
+            //2016年11月26日 测试，不要把collection里的对象设置为null.
             object = null;
         }
+        
     }
 
     @Test
@@ -59,7 +61,8 @@ public class MemoryLeakTest {
         userSet.remove(user1);
         userSet.add(user1);
         System.out.println(userSet.size());
-
-
+        /**
+         * 2016年11月26日 没看懂
+         */
     }
 }

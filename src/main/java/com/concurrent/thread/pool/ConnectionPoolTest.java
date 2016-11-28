@@ -5,6 +5,7 @@ import com.concurrent.util.SleepUtil;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * 2016年11月27日 没有看懂结果<br>
  * User: shijingui
  * Date: 2016/2/18
  */

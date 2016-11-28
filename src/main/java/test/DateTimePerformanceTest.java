@@ -19,16 +19,24 @@ public class DateTimePerformanceTest {
 
         time = System.nanoTime();
         Date date = new Date();
-        System.out.println(System.nanoTime() - time);
+        System.out.println("new Date cost " + (System.nanoTime() - time) + " nanoseconds" );
 
         time = System.nanoTime();
         Object object = new Object();
-        System.out.println(System.nanoTime() - time);
+        System.out.println("new Object=" + (System.nanoTime() - time)  + " nanoseconds");
 
         time = System.nanoTime();
         List list = new ArrayList();
-        System.out.println(System.nanoTime() - time);
-
+        System.out.println("new ArrayList=" + (System.nanoTime() - time) + " nanoseconds");
+        
+        /**
+         * 注意：1毫秒 = 1000000 纳秒
+         * 2016-11-26 执行结果：
+4000
+new Date cost 145000 nanoseconds
+new Object=6000 nanoseconds
+new ArrayList=24000 nanoseconds
+         */
 
     }
 }

@@ -116,6 +116,7 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job> 
             Job job = null;
             while (jobs.isEmpty()) {
                 try {
+                	// 空的话等待，前面的connectionPoolTest,pool is empty ,pool wait.<br>
                     jobs.wait();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();

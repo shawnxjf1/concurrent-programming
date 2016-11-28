@@ -6,9 +6,21 @@
     <artifactId>concurrent-programming</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+    
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>3.2.9.RELEASE</spring.version>
+		<slf4j.api.version>1.7.21</slf4j.api.version>
+
+		<mybatis.spring.version>1.2.1</mybatis.spring.version>
+		<dbcp.version>1.4</dbcp.version>
+		<mybatis.version>3.2.3</mybatis.version>
+		<mysql.version>5.1.26</mysql.version>
+
+		<elasticsearch>2.3.3</elasticsearch>
+		<jodatime>2.9.4</jodatime>
+	</properties>
+   
 
     <dependencies>
         <dependency>
@@ -17,6 +29,12 @@
             <version>4.1</version>
             <scope>compile</scope>
         </dependency>
+        
+        <dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.api.version}</version>
+		</dependency>
     </dependencies>
 
     <build>

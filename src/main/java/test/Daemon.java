@@ -14,6 +14,15 @@ public class Daemon {
         t.setPriority(10);
         t.setName("Daemon thread");
         t.start();
+        
+        Thread t1 = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				System.out.println("execute thread t1...s");
+			}
+		});
+        t1.start();
     }
 
     static class DaemonRunner implements Runnable {
@@ -21,7 +30,9 @@ public class Daemon {
         @Override
         public void run() {
             try {
+            	System.out.println("bein execute DaemonRunner");
                 Thread.sleep(2000);
+            	System.out.println("end execute DaemonRunner");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
