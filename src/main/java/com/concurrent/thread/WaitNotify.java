@@ -5,9 +5,8 @@ import com.concurrent.util.SleepUtil;
 import java.util.Date;
 
 /**
- * 线程等待通知
- * User: shijingui
- * Date: 2016/2/5
+ * 线程等待通知<br>
+ * 测试 obj.wait(),obj.notifyAll(),当调用obj.wait()会让线程释放 obj 锁。
  */
 public class WaitNotify {
 
@@ -18,11 +17,48 @@ public class WaitNotify {
     public static void main(String... args) {
         Thread waitThread = new Thread(new Wait(), "WaitThread");
         waitThread.start();
-
+        
         SleepUtil.second(2);
+        
+        System.out.println("wait thread get lock(obj) first,when call obj.wait(),obj release lock.");
+        
+        System.out.println("after wait ,wait thread status=" + waitThread.getState().toString());
+        SleepUtil.second(2);
+         
 
         Thread notifyThread = new Thread(new Notify(), "NotifyThread");
         notifyThread.start();
+        SleepUtil.second(10);
+        System.out.println("after notifyall ,wait thread status=" + waitThread.getState().toString());
+
+        
+        /**
+         * 程序执行结果1：<br>
+         * WaitThread  is waiting..... Tue Nov 29 19:52:16 CST 2016
+         * NotifyThread is notify done....Tue Nov 29 19:52:18 CST 2016
+         * WaitThread  is done.... Tue Nov 29 19:52:23 CST 2016
+         */
+        
+        /**
+         * 程序执行结果2：
+         * WaitThread  is waiting..... Tue Nov 29 20:00:17 CST 2016
+wait thread get lock(obj) first,when call obj.wait(),obj release lock.
+after wait ,wait thread status=WAITING 【】
+NotifyThread is notify done....Tue Nov 29 20:00:21 CST 2016 
+(notifythread.start(), thread.sleep(5))
+after notifyall ,wait thread status=BLOCKED 【】
+WaitThread  is done.... Tue Nov 29 20:00:26 CST 2016
+         */
+        
+        /**
+         * WaitThread  is waiting..... Tue Nov 29 20:01:30 CST 2016
+wait thread get lock(obj) first,when call obj.wait(),obj release lock.
+after wait ,wait thread status=WAITING
+NotifyThread is notify done....Tue Nov 29 20:01:34 CST 2016
+WaitThread  is done.... Tue Nov 29 20:01:39 CST 2016
+(notifythread.start(), thread.sleep(10))
+after notifyall ,wait thread status=TERMINATED
+         */
     }
 
 
