@@ -30,5 +30,14 @@ public class ReentrantLockSynchronizedDemo implements Runnable {
         new Thread(demo01).start();
         new Thread(demo01).start();
         new Thread(demo01).start();
+        /**
+         * 8
+8
+10
+10
+9
+9
+说明synchronized 是可以重入的<br>
+         */
     }
 }
