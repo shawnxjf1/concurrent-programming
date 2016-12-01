@@ -54,7 +54,7 @@ public class UserBean {
         return name.hashCode() + ((Integer) age).hashCode();
     }
 
-    @Override
+  /*  @Override
     public boolean equals(Object obj) {
         UserBean userBean = null;
         if (obj instanceof UserBean) {
@@ -62,5 +62,5 @@ public class UserBean {
         }
 
         return (this.age == userBean.getAge() && this.name.equals(userBean.getName()));
-    }
+    }*/
 }

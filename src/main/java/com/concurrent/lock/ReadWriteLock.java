@@ -24,7 +24,7 @@ public class ReadWriteLock {
         //当前读线程
         Thread callingThread = Thread.currentThread();
         while (!canGrantReadAccess(callingThread)) {
-            wait();
+            wait();//调用的是该对象的 wait()因为继承object
         }
         readingThreads.put(callingThread, (getReadAccessCount(callingThread) + 1));
     }

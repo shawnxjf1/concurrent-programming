@@ -26,6 +26,12 @@ public class DeadLockDemo {
 
     public static void main(String[] args) {
         new DeadLockDemo().deadLock();
+        
+        /**
+         * 2016-12-01 输出<br>
+         * has B geting A
+         * has A getting B
+         */
     }
 
     private void deadLock() {
@@ -38,8 +44,9 @@ public class DeadLockDemo {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    System.out.println("has A getting B");
                     synchronized (B) {
-                        System.out.println("1");
+                        System.out.println("getted B");
                     }
                 }
             }
@@ -49,8 +56,10 @@ public class DeadLockDemo {
             @Override
             public void run() {
                 synchronized (B) {
+                    System.out.println("has B geting A");
+
                     synchronized (A) {
-                        System.out.println("2");
+                        System.out.println("getted A");
                     }
                 }
             }
