@@ -70,4 +70,9 @@ public class GCTypeSelectOptimize {
 -Xmn2g:设置年轻代大小为2G.整个堆大小=年轻代大小 + 年老代大小 + 持久代大小.持久代一般固定大小为64m,所以增大年轻代后,将会减小年老代大小.此值对系统性能影响较大,Sun官方推荐配置为整个堆的3/8. 
 -Xss128k: 设置每个线程的堆栈大小.JDK5.0以后每个线程堆栈大小为1M,以前每个线程堆栈大小为256K.更具应用的线程所需内存大小进行 调整.在相同物理内存下,减小这个值能生成更多的线程.但是操作系统对一个进程内的线程数还是有限制的,不能无限生成,经验值在3000~5000左右. 
      */
+    
+    /**
+     * tomcat 后台查询到的:
+     * stlm     25463     1  1 11:40 ?        00:04:18 /opt/jdk1.6.0_34/bin/java -Djava.util.logging.config.file=/home/stlm/exec/rfss/console/liq_tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Xms256m -Xmx512m -Xss1024K -XX:PermSize=128m -XX:MaxPermSize=256m -Djava.rmi.server.hostname=10.7.111.153 -Djava.endorsed.dirs=/home/stlm/exec/rfss/console/liq_tomcat/endorsed -classpath /home/stlm/exec/rfss/console/liq_tomcat/bin/bootstrap.jar:/home/stlm/exec/rfss/console/liq_tomcat/bin/tomcat-juli.jar -Dcatalina.base=/home/stlm/exec/rfss/console/liq_tomcat -Dcatalina.home=/home/stlm/exec/rfss/console/liq_tomcat -Djava.io.tmpdir=/home/stlm/exec/rfss/console/liq_tomcat/temp org.apache.catalina.startup.Bootstrap start
+     */
 }
