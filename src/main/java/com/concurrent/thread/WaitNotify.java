@@ -90,6 +90,23 @@ WaitThread  is done.... Wed Nov 30 23:53:13 CST 2016
         in main thread: after notifyall ,notify thread status=TIMED_WAITING
         notify thread complete...
         WaitThread  is done.... Wed Nov 30 23:39:16 CST 2016*/
+        
+        /**
+         * 注意waiting thread 由 WAITING -> BLOCKED  (BLOCKED 是由于 synchronized吧)
+         */
+        
+        
+        /**
+         * 2017-01-06 执行情况：<br>
+         * Wait Thread is getted obj lock.
+WaitThread  is waiting,in loop..... Fri Jan 06 10:56:25 CST 2017
+in main thread:wait thread get lock(obj) first,when call obj.wait(),obj release lock.
+after wait ,wait thread status=WAITING
+Notify Thread is getted obj lock.
+NotifyThread is notify done....Fri Jan 06 10:56:29 CST 2017
+in main thread:after notifyall ,wait thread status=BLOCKED
+in main thread: after notifyall ,notify thread status=TIMED_WAITING
+         */
 
     }
 
@@ -99,9 +116,12 @@ WaitThread  is done.... Wed Nov 30 23:53:13 CST 2016
         public void run() {
             try {
                 synchronized (obj) {
+                	
+                	System.out.println("Wait Thread is getted obj lock.");
+                	
                     //当条件不满足时，继续wait,同时释放obj的锁
                     while (flag) {
-                        System.out.println(Thread.currentThread().getName() + "  is waiting..... " + new Date());
+                        System.out.println(Thread.currentThread().getName() + "  is waiting,in loop..... " + new Date());
                         obj.wait();
 //                        If
 //                        * {@code timeout} is zero, however, then real time is not taken into
@@ -123,6 +143,9 @@ WaitThread  is done.... Wed Nov 30 23:53:13 CST 2016
                     }
                     
                 }
+                
+                System.out.println("Wait Thread after synchronized(obj).");
+
                 System.out.println(Thread.currentThread().getName() + "  is done.... " + new Date());
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -137,6 +160,8 @@ WaitThread  is done.... Wed Nov 30 23:53:13 CST 2016
             try {
                 synchronized (obj) {
                     //当条件不满足时，继续wait,同时释放obj的锁
+                	System.out.println("Wait1000 Thread is getted obj lock.");
+
                     while (flag) {
                         System.out.println(Thread.currentThread().getName() + "  is waiting..... " + new Date());
                         obj.wait(1000);
@@ -162,6 +187,9 @@ WaitThread  is done.... Wed Nov 30 23:53:13 CST 2016
                     }
                     
                 }
+                
+                System.out.println("Wait1000 Thread after synchronized(obj).");
+
                 System.out.println(Thread.currentThread().getName() + "  is done.... " + new Date());
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -173,6 +201,9 @@ WaitThread  is done.... Wed Nov 30 23:53:13 CST 2016
     static class Notify implements Runnable {
         @Override
         public void run() {
+        	
+        	System.out.println("Notify Thread is getted obj lock.");
+
             synchronized (obj) {
                 //获取obj的锁，然后进行通知，通知时不会释放obj的锁,类似于过早通知
                 //只有当前线程释放了obj锁后，Wait才能从wait方法返回
@@ -182,6 +213,7 @@ WaitThread  is done.... Wed Nov 30 23:53:13 CST 2016
                 SleepUtil.second(20);  //注意把这行注释放开的话 wait和notify线程都执行不完。
                 System.out.println("notify thread complete...");
             }
+           System.out.println("Notify Thread after synchronized(obj).");
         }
     }
 }
